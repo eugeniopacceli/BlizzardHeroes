@@ -1,14 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.blizzardheroes.MainWindowController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
-</AnchorPane>
+<GridPane fx:id="backgroundGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.blizzardheroes.MainWindowController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </GridPane.margin>
+         <children>
+            <TitledPane fx:id="computer1Frame" animated="false" text="Computador 1">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Cartas">
+                                 <font>
+                                    <Font name="Calibri" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="computer1CardCount" text="n">
+                                 <font>
+                                    <Font name="Consolas Italic" size="35.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="computer1Stats" text="&lt;status&gt;">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>
+            <ImageView fx:id="computer1CardImage" fitHeight="304.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <children>
+            <TitledPane fx:id="computer2Frame" animated="false" text="Computador 2">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Cartas">
+                                 <font>
+                                    <Font name="Calibri" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="computer2CardCount" text="n">
+                                 <font>
+                                    <Font name="Consolas Italic" size="35.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="computer2Stats" text="&lt;status&gt;">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>
+            <ImageView fx:id="computer2CardImage" fitHeight="304.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <children>
+            <TitledPane fx:id="computer3Frame" animated="false" text="Computador 3">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Cartas">
+                                 <font>
+                                    <Font name="Calibri" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="computer3CardCount" text="n">
+                                 <font>
+                                    <Font name="Consolas Italic" size="35.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="computer3Stats" text="&lt;status&gt;">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>
+            <ImageView fx:id="computer3CardImage" fitHeight="304.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <children>
+            <TitledPane fx:id="humanFrame" animated="false" text="Humano (você)">
+               <content>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Cartas">
+                                 <font>
+                                    <Font name="Calibri" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="humanCardCount" text="n">
+                                 <font>
+                                    <Font name="Consolas Italic" size="35.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="humanStats" text="&lt;status&gt;">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>
+            <ImageView fx:id="humanCardImage" fitHeight="304.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+         <GridPane.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>
