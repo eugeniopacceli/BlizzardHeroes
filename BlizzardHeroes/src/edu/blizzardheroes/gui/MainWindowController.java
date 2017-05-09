@@ -1,4 +1,4 @@
-package edu.blizzardheroes;
+package edu.blizzardheroes.gui;
 
 import edu.blizzardheroes.gameplay.GameTable;
 import edu.blizzardheroes.model.actors.ComputerPlayer;
@@ -10,7 +10,6 @@ import edu.blizzardheroes.model.cards.Deck;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -52,11 +51,13 @@ public class MainWindowController implements Initializable {
                 + "-fx-background-repeat: stretch;"
                 + "-fx-background-position: center center;");
 
-        Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
+        //Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
+        Image image = new Image("/edu/blizzardheroes/assets/cards/specialists/medivh.png");
         computer1CardImage.setImage(image);
         computer2CardImage.setImage(image);
         computer3CardImage.setImage(image);
         humanCardImage.setImage(image);
+        humanCardImage.setStyle("-fx-background-color: #000000;");
         
         int i;
         int playersNumber = 4;
