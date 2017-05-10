@@ -96,6 +96,15 @@ public class Card {
     public CardCategory getCategory() {
         return category;
     }
+    
+    public String getCategoryName() {
+        switch(category){
+            case A: return "assassins";
+            case B: return "warriors";
+            case C: return "supports";
+            default: return "specialists";
+        }
+    }
 
     public void setCategory(CardCategory category) {
         this.category = category;
