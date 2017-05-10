@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -64,6 +65,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        backgroundGrid.setOnKeyPressed((e) -> { if(e.getCode() == KeyCode.ENTER){ gameAction(); } });
         gameLogo = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         placeHolder = new Image("/edu/blizzardheroes/assets/backcard.png");
         playersNumber = 4;        
