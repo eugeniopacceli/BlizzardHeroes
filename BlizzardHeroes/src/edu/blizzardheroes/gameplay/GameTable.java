@@ -42,9 +42,6 @@ public class GameTable {
         System.out.println("Winner: " + bestCard.getKey().getName()
                           +" Card: " + bestCard.getValue().getHeroName() + "\n");
         
-        // Removes the player (to avoid duplicate and to avoid remove his card)
-        this.currentCards.remove(bestCard.getKey());
-        
         // Remove the card from each player that lost
         this.currentCards.entrySet().forEach((entry) -> {
             entry.getKey().getCards().remove(entry.getValue());        
