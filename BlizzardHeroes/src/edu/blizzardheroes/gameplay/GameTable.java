@@ -25,7 +25,7 @@ public class GameTable {
     }
     
     // Compare all the n cards on the table, returning the winner and owner
-    public Pair<Player, Card> playTurn(){   
+    public Pair<Player, Card> playTurn(){           
         System.out.println("Cards on the table: \n");
         currentCards.entrySet().forEach((entry) -> {
             Player player = entry.getKey();
@@ -49,6 +49,8 @@ public class GameTable {
         
         // Add the cards to the winner
         bestCard.getKey().getCards().addAll(this.currentCards.values());
+        
+        this.currentCards.clear();
         
         return bestCard;
     }

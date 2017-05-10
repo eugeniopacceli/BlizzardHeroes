@@ -144,10 +144,14 @@ public class MainWindowController implements Initializable {
     }
 
     protected void sync(){
-        updateImage(computer1CardImage, players[1].playCard().getCategoryName(), players[1].playCard().getHeroName());
-        updateImage(computer2CardImage, players[2].playCard().getCategoryName(), players[2].playCard().getHeroName());
-        updateImage(computer3CardImage, players[3].playCard().getCategoryName(), players[3].playCard().getHeroName());
-        updateImage(humanCardImage, players[0].playCard().getCategoryName(), players[0].playCard().getHeroName());
+        if(players[1].isActive())
+            updateImage(computer1CardImage, players[1].playCard().getCategoryName(), players[1].playCard().getHeroName());
+        if(players[2].isActive())
+            updateImage(computer2CardImage, players[2].playCard().getCategoryName(), players[2].playCard().getHeroName());
+        if(players[3].isActive())
+            updateImage(computer3CardImage, players[3].playCard().getCategoryName(), players[3].playCard().getHeroName());
+        if(players[0].isActive())
+            updateImage(humanCardImage, players[0].playCard().getCategoryName(), players[0].playCard().getHeroName());
         
         computer1CardCount.setText(Integer.toString(players[1].getCards().size()));
         computer2CardCount.setText(Integer.toString(players[2].getCards().size()));
@@ -170,9 +174,10 @@ public class MainWindowController implements Initializable {
                 break;
         }
 
-        for(int i = 0; i < playersNumber; i++){
-            table.currentCards.put(players[i], players[i].getCards().get(0));
-        }
+        for(int i = 0; i < playersNumber; i++)
+            if(players[i].isActive())
+                table.currentCards.put(players[i], players[i].playCard());        
+        
         Pair<Player, Card> winner = table.playTurn();
 
         subtitle.setText(currentPlayer.getName() + " escolheu " + table.attributeSelected.name()+", " + winner.getKey().getName() + " venceu a rodada.");

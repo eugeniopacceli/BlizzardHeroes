@@ -20,9 +20,14 @@ public abstract class Player {
         this.name = name;
         this.cards = new ArrayList<>();
     }    
+    
     public Card playCard(){
-        return this.cards.get(0);
+        return this.cards.get(0);               
     }            
+    
+    public boolean isActive(){
+        return this.cards.size() > 0;
+    }
     
     public void ShowDeck()
     {
