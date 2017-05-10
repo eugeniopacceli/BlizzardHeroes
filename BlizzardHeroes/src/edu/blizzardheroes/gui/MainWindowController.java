@@ -48,7 +48,9 @@ public class MainWindowController implements Initializable {
 
     @FXML Button gameButton;
     
-    Player[] players;
+    Player[] players = new Player[4];
+    Label[] playersLabel = new Label[4];
+    ImageView[] playersCardImage = new ImageView[4];
     DeckBuilder deck;
     GameTable table;
     Player currentPlayer;
@@ -59,26 +61,26 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        backgroundGrid.setStyle(
-                "-fx-background-color: #000000;"
-                + "-fx-background-image: url(\"/edu/blizzardheroes/assets/header_lrg.jpg\");"
-                + "-fx-background-repeat: stretch;"
-                + "-fx-background-position: center center;");
-
-        //Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
-        humanCardImage.setStyle("-fx-background-color: #000000;");
-
         playersNumber = 4;        
         state = GameState.MANUAL;
         players = new Player[playersNumber];
 
+        playersLabel[1] = computer1CardCount;
+        playersLabel[2] = computer2CardCount;
+        playersLabel[3] = computer3CardCount;
+        playersLabel[0] = humanCardCount;
+        
+        playersCardImage[1] = computer1CardImage;
+        playersCardImage[2] = computer2CardImage;
+        playersCardImage[3] = computer3CardImage;
+        playersCardImage[0] = humanCardImage;
+        
         //The first players always is the Human
         players[0] = new HumanPlayer("Humano");
         for(int i = 1; i < playersNumber; i++)
             players[i] = new ComputerPlayer("Computador " + i);
 
         deck = new DeckBuilder();
-
         deck.buildDeck();
         ArrayList<Card>[] decks = deck.distributeCards(playersNumber);
         
@@ -86,7 +88,6 @@ public class MainWindowController implements Initializable {
             players[i].setCards(decks[i]); 
         
         table = new GameTable();
-
         currentPlayer = players[0];
     }
     
@@ -144,20 +145,13 @@ public class MainWindowController implements Initializable {
     }
 
     protected void sync(){
-        if(players[1].isActive())
-            updateImage(computer1CardImage, players[1].playCard().getCategoryName(), players[1].playCard().getHeroName());
-        if(players[2].isActive())
-            updateImage(computer2CardImage, players[2].playCard().getCategoryName(), players[2].playCard().getHeroName());
-        if(players[3].isActive())
-            updateImage(computer3CardImage, players[3].playCard().getCategoryName(), players[3].playCard().getHeroName());
-        if(players[0].isActive())
-            updateImage(humanCardImage, players[0].playCard().getCategoryName(), players[0].playCard().getHeroName());
-        
-        computer1CardCount.setText(Integer.toString(players[1].getCards().size()));
-        computer2CardCount.setText(Integer.toString(players[2].getCards().size()));
-        computer3CardCount.setText(Integer.toString(players[3].getCards().size()));
-        humanCardCount.setText(Integer.toString(players[0].getCards().size()));
-        
+        for(int i = 0; i < players.length; i++){
+            if(players[i].isActive()){
+                updateImage(playersCardImage[i], players[i].playCard().getCategoryName(), players[i].playCard().getHeroName());
+                playersLabel[i].setText(Integer.toString(players[i].getCards().size()));
+            }
+        }
+
         switch(state){
             case MANUAL:
                 Card currentCard = players[0].playCard();
