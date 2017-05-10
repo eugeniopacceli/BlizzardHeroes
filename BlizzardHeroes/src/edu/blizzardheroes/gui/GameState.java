@@ -11,5 +11,7 @@ package edu.blizzardheroes.gui;
  */
 public enum GameState {
     PLAYING,
-    MANUAL
+    MANUAL,
+    PLAYINGPAUSE,
+    MANUALPAUSE
 }

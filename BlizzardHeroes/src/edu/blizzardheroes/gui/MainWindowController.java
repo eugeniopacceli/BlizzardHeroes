@@ -21,6 +21,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -43,6 +44,7 @@ public class MainWindowController implements Initializable {
     @FXML ImageView computer2CardImage;
     @FXML ImageView computer3CardImage;
     @FXML ImageView humanCardImage;
+    Image placeHolder;
 
     @FXML Label subtitle;
 
@@ -61,10 +63,12 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        placeHolder = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         playersNumber = 4;        
         state = GameState.MANUAL;
         players = new Player[playersNumber];
-
+        subtitle.setText("Para começar, aperte Jogar na janela do jogador humano.");
+        
         playersLabel[1] = computer1CardCount;
         playersLabel[2] = computer2CardCount;
         playersLabel[3] = computer3CardCount;
@@ -84,8 +88,10 @@ public class MainWindowController implements Initializable {
         deck.buildDeck();
         ArrayList<Card>[] decks = deck.distributeCards(playersNumber);
         
-        for(int i = 0; i < playersNumber; i++)
+        for(int i = 0; i < playersNumber; i++){
             players[i].setCards(decks[i]); 
+            playersLabel[i].setText(Integer.toString(decks[i].size()));
+        }
         
         table = new GameTable();
         currentPlayer = players[0];
@@ -145,11 +151,13 @@ public class MainWindowController implements Initializable {
     }
 
     protected void sync(){
-        for(int i = 0; i < players.length; i++){
-            if(players[i].isActive()){
-                updateImage(playersCardImage[i], players[i].playCard().getCategoryName(), players[i].playCard().getHeroName());
-                playersLabel[i].setText(Integer.toString(players[i].getCards().size()));
-            }
+        Card[] playedCards = new Card[4];
+
+        for(int i = 1; i < players.length; i++){
+            playersCardImage[i].setImage(placeHolder);
+        }
+        if(players[0].isActive()){
+            updateImage(playersCardImage[0], players[0].playCard().getCategoryName(), players[0].playCard().getHeroName());
         }
 
         switch(state){
@@ -159,32 +167,53 @@ public class MainWindowController implements Initializable {
                                     currentCard.getUtility(),
                                     currentCard.getSurvivability(),
                                     currentCard.getComplexity());
-                state = GameState.PLAYING;
                 break;
             case PLAYING:
                 // AI players
                 ComputerPlayer p = (ComputerPlayer)currentPlayer;
                 table.attributeSelected = p.getCurrentBestAttribute();
                 break;
+            case PLAYINGPAUSE:
+                subtitle.setText(currentPlayer.getName() + " está pensando a jogada...");
+                gameButton.setText("Prosseguir");
+                state = GameState.PLAYING;
+                return;
+            case MANUALPAUSE:
+                subtitle.setText(currentPlayer.getName() + " está pensando a jogada...");
+                gameButton.setText("Escolher");
+                state = GameState.MANUAL;
+                return;
         }
 
-        for(int i = 0; i < playersNumber; i++)
-            if(players[i].isActive())
-                table.currentCards.put(players[i], players[i].playCard());        
+        for(int i = 0; i < playersNumber; i++){
+            if(players[i].isActive()){
+                table.currentCards.put(players[i], players[i].playCard());
+                playedCards[i] = players[i].playCard();
+            }
+        }
         
         Pair<Player, Card> winner = table.playTurn();
 
         subtitle.setText(currentPlayer.getName() + " escolheu " + table.attributeSelected.name()+", " + winner.getKey().getName() + " venceu a rodada.");
+        for(int i = 0; i < players.length; i++){
+            if(players[i].isActive()){
+                updateImage(playersCardImage[i], playedCards[i].getCategoryName(), playedCards[i].getHeroName());
+                playersLabel[i].setText(Integer.toString(players[i].getCards().size()));
+            }else{
+                playersLabel[i].setText("0");
+                playersLabel[i].setTextFill(Color.RED);
+                playersCardImage[i].setImage(placeHolder);
+            }
+        }
 
         if(winner.getKey() != players[0]){
-            state = GameState.PLAYING;
+            state = GameState.PLAYINGPAUSE;
             currentPlayer = winner.getKey();
-            gameButton.setText("Confirma");
         }else{
-            state = GameState.MANUAL;
+            state = GameState.MANUALPAUSE;
             currentPlayer = players[0];
-            gameButton.setText("Escolha");
         }
+        gameButton.setText("Entendido");
     }
     
     @FXML
