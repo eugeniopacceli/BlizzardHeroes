@@ -63,7 +63,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        placeHolder = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
+        placeHolder = new Image("/edu/blizzardheroes/assets/backcard.png");
         playersNumber = 4;        
         state = GameState.MANUAL;
         players = new Player[playersNumber];
