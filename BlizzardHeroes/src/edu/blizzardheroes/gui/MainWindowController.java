@@ -21,9 +21,11 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class MainWindowController implements Initializable {
+    Stage stage;
     
     @FXML GridPane backgroundGrid;
     
@@ -41,12 +43,7 @@ public class MainWindowController implements Initializable {
     @FXML ImageView computer2CardImage;
     @FXML ImageView computer3CardImage;
     @FXML ImageView humanCardImage;
-    
-    @FXML Label computer1Stats;
-    @FXML Label computer2Stats;
-    @FXML Label computer3Stats;
-    @FXML Label humanStats;
-    
+
     @FXML Label subtitle;
 
     @FXML Button gameButton;
@@ -91,7 +88,10 @@ public class MainWindowController implements Initializable {
         table = new GameTable();
 
         currentPlayer = players[0];
-        sync();
+    }
+    
+    public void setStage(Stage stage){
+        this.stage = stage;
     }
     
     protected CardAttribute displayChooseDialog(int damage, int utility, int survival, int complexity){
@@ -106,15 +106,20 @@ public class MainWindowController implements Initializable {
         choices.add(utilityStr);
         choices.add(survivalStr);
         choices.add(complexityStr);
-
+        
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Dano", choices);
+        
+        if(stage != null){
+            dialog.initOwner(stage);
+        }
+
         dialog.setTitle("Que a batalha comece!");
         dialog.setHeaderText("Em suas mãos...\nDano: " + damage +
                              "\nUtilidade: "+ utility +
                              "\nSobrevivência: "+ survival +
                              "\nComplexidade: " + complexity);
         dialog.setContentText("Escolha o atributo para competir:");
-        
+
         Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         ImageView imgView = new ImageView();
         imgView.setImage(image);
@@ -130,25 +135,6 @@ public class MainWindowController implements Initializable {
             }
         }
         return CardAttribute.DAMAGE;
-    }
-    
-    
-    protected Label getStatusLabelByPlayer(Player p){
-        if(p == players[0]){
-            return humanStats;
-        }
-        if(p == players[1]){
-            return computer1Stats;
-        }
-        if(p == players[2]){
-            return computer2Stats;
-        }
-        return computer3Stats;
-    }
-    
-    protected void setStatusLabel(Label status, String text){
-        computer1Stats = computer2Stats = computer3Stats = humanStats = null;
-        status.setText(text);
     }
     
     protected void updateImage(ImageView imgView, String category, String imageName){
@@ -199,7 +185,6 @@ public class MainWindowController implements Initializable {
             currentPlayer = players[0];
             gameButton.setText("Escolha");
         }
-        setStatusLabel(getStatusLabelByPlayer(currentPlayer), "Selecionando");
     }
     
     @FXML

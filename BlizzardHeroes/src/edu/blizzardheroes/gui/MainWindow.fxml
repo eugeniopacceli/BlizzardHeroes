@@ -34,7 +34,7 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </GridPane.margin>
          <children>
-            <TitledPane fx:id="computer1Frame" animated="false" text="Computador 1">
+            <TitledPane fx:id="computer1Frame" animated="false" prefWidth="100.0" text="Computador 1">
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -52,15 +52,6 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="computer1Stats" text="&lt;status&gt;">
-                                 <font>
-                                    <Font name="Calibri" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
                      </children>
                   </HBox>
                </content>
@@ -70,7 +61,7 @@
       </HBox>
       <HBox GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <children>
-            <TitledPane fx:id="computer2Frame" animated="false" text="Computador 2">
+            <TitledPane fx:id="computer2Frame" animated="false" prefWidth="100.0" text="Computador 2">
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -88,15 +79,6 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="computer2Stats" text="&lt;status&gt;">
-                                 <font>
-                                    <Font name="Calibri" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
                      </children>
                   </HBox>
                </content>
@@ -109,7 +91,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <children>
-            <TitledPane fx:id="computer3Frame" animated="false" text="Computador 3">
+            <TitledPane fx:id="computer3Frame" animated="false" prefWidth="100.0" text="Computador 3">
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -127,15 +109,6 @@
                               </Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="computer3Stats" text="&lt;status&gt;">
-                                 <font>
-                                    <Font name="Calibri" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
                      </children>
                   </HBox>
                </content>
@@ -148,7 +121,7 @@
       </HBox>
       <HBox alignment="BOTTOM_CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
          <children>
-            <TitledPane fx:id="humanFrame" animated="false" text="Humano (você)">
+            <TitledPane fx:id="humanFrame" animated="false" prefWidth="100.0" text="Humano (você)">
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -165,15 +138,6 @@
                                  </font>
                               </Label>
                               <Button fx:id="gameButton" mnemonicParsing="false" onAction="#gameAction" text="Jogar" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="humanStats" text="&lt;status&gt;">
-                                 <font>
-                                    <Font name="Calibri" size="20.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </VBox>
                      </children>
