@@ -45,6 +45,7 @@ public class MainWindowController implements Initializable {
     @FXML ImageView computer3CardImage;
     @FXML ImageView humanCardImage;
     Image placeHolder;
+    Image gameLogo;
 
     @FXML Label subtitle;
 
@@ -63,6 +64,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gameLogo = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         placeHolder = new Image("/edu/blizzardheroes/assets/backcard.png");
         playersNumber = 4;        
         state = GameState.MANUAL;
@@ -127,9 +129,8 @@ public class MainWindowController implements Initializable {
                              "\nComplexidade: " + complexity);
         dialog.setContentText("Escolha o atributo para competir:");
 
-        Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         ImageView imgView = new ImageView();
-        imgView.setImage(image);
+        imgView.setImage(gameLogo);
         dialog.setGraphic(imgView);
 
         Optional<String> result = dialog.showAndWait();
@@ -154,7 +155,9 @@ public class MainWindowController implements Initializable {
         Card[] playedCards = new Card[4];
 
         for(int i = 1; i < players.length; i++){
-            playersCardImage[i].setImage(placeHolder);
+            if(players[i].isActive()){
+                playersCardImage[i].setImage(placeHolder);
+            }
         }
         if(players[0].isActive()){
             updateImage(playersCardImage[0], players[0].playCard().getCategoryName(), players[0].playCard().getHeroName());
@@ -208,10 +211,13 @@ public class MainWindowController implements Initializable {
             if(players[i].isActive()){
                 updateImage(playersCardImage[i], playedCards[i].getCategoryName(), playedCards[i].getHeroName());
                 playersLabel[i].setText(Integer.toString(players[i].getCards().size()));
+                if(playedCards[i].isTrumpCard()){
+                    subtitle.setText(subtitle.getText() + " " + players[i].getName() + " gastou o super trunfo.");
+                }
             }else{
                 playersLabel[i].setText("0");
                 playersLabel[i].setTextFill(Color.RED);
-                playersCardImage[i].setImage(placeHolder);
+                playersCardImage[i].setImage(gameLogo);
             }
         }
 

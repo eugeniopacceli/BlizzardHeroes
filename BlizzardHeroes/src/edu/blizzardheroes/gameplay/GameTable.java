@@ -8,6 +8,8 @@ package edu.blizzardheroes.gameplay;
 import edu.blizzardheroes.model.actors.Player;
 import edu.blizzardheroes.model.cards.CardAttribute;
 import edu.blizzardheroes.model.cards.Card;
+import edu.blizzardheroes.model.cards.CardCategory;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.util.Pair;
@@ -59,11 +61,26 @@ public class GameTable {
     public Pair<Player, Card> compareAttribute(CardAttribute attribute){        
         Pair<Player, Card> bestCard = new Pair(this.currentCards.keySet().iterator().next(),
                                                this.currentCards.values().iterator().next());
+        Pair<Player, Card> trumpCard = null;
+        ArrayList<Pair<Player, Card>> aCards = new ArrayList<>();
         for(Map.Entry<Player, Card> entry : this.currentCards.entrySet()){
             Card card = entry.getValue();
-            if(card.getAttribute(attribute) > bestCard.getValue().getAttribute(attribute))
+            if(card.getCategory() == CardCategory.A){
+                aCards.add(new Pair(entry.getKey(), entry.getValue()));
+            } else if(card.isTrumpCard()){
+                trumpCard = new Pair(entry.getKey(), entry.getValue());
+            }
+            if(card.getAttribute(attribute) > bestCard.getValue().getAttribute(attribute)){
                 bestCard = new Pair(entry.getKey(), entry.getValue());
-        }               
+            }
+        }
+        if(trumpCard != null ){
+            if(aCards.size() == 0){
+                return trumpCard;
+            }else{
+                return aCards.get(0);
+            }
+        }
         return bestCard;
     }            
 
