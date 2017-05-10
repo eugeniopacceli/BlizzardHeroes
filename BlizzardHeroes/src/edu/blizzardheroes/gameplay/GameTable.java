@@ -25,7 +25,7 @@ public class GameTable {
     }
     
     // Compare all the n cards on the table, returning the winner and owner
-    public Pair<Player, Card> compareCards(){   
+    public Pair<Player, Card> playTurn(){   
         System.out.println("Cards on the table: \n");
         currentCards.entrySet().forEach((entry) -> {
             Player player = entry.getKey();
@@ -45,9 +45,10 @@ public class GameTable {
         // Removes the player (to avoid duplicate and to avoid remove his card)
         this.currentCards.remove(bestCard.getKey());
         
-        // Remove the card from each player that lost    
-        for(Map.Entry<Player, Card> entry : this.currentCards.entrySet())        
+        // Remove the card from each player that lost
+        this.currentCards.entrySet().forEach((entry) -> {
             entry.getKey().getCards().remove(entry.getValue());        
+        });
         
         // Add the cards to the winner
         bestCard.getKey().getCards().addAll(this.currentCards.values());

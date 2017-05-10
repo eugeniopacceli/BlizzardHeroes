@@ -14,10 +14,10 @@ import java.util.Random;
  * @author Daniel
  */
 // Control the actions about the cards distribution
-public class Deck {       
+public class DeckBuilder {       
     private ArrayList<Card> deck;
     
-    public Deck(){
+    public DeckBuilder(){
         this.deck = new ArrayList<>();
     }
     

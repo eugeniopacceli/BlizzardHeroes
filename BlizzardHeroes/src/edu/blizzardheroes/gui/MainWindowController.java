@@ -6,7 +6,7 @@ import edu.blizzardheroes.model.actors.HumanPlayer;
 import edu.blizzardheroes.model.actors.Player;
 import edu.blizzardheroes.model.cards.Card;
 import edu.blizzardheroes.model.cards.CardAttribute;
-import edu.blizzardheroes.model.cards.Deck;
+import edu.blizzardheroes.model.cards.DeckBuilder;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -70,7 +70,7 @@ public class MainWindowController implements Initializable {
         for(i = 1; i < playersNumber; i++)
             players[i] = new ComputerPlayer("Computer " + i);
         
-        Deck deck = new Deck();
+        DeckBuilder deck = new DeckBuilder();
         deck.buildDeck();
         ArrayList<Card>[] decks = deck.distributeCards(playersNumber);
         
@@ -85,7 +85,7 @@ public class MainWindowController implements Initializable {
         for(i = 0; i < playersNumber; i++)
             table.currentCards.put(players[i], players[i].getCards().get(0));
         
-        Pair<Player, Card> winner = table.compareCards();            
+        Pair<Player, Card> winner = table.playTurn();            
         
         deck.showDecks(players);
     }    
