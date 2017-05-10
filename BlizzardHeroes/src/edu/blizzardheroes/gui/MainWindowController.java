@@ -141,7 +141,7 @@ public class MainWindowController implements Initializable {
                 case complexityStr: return CardAttribute.COMPLEXITY;
             }
         }
-        return CardAttribute.DAMAGE;
+        return null;
     }
     
     protected void updateImage(ImageView imgView, String category, String imageName){
@@ -167,6 +167,9 @@ public class MainWindowController implements Initializable {
                                     currentCard.getUtility(),
                                     currentCard.getSurvivability(),
                                     currentCard.getComplexity());
+                if(table.attributeSelected == null){
+                    return;
+                }
                 break;
             case PLAYING:
                 // AI players
