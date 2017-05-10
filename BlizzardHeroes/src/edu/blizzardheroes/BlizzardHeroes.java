@@ -18,7 +18,7 @@ public class BlizzardHeroes extends Application {
         
         controller.setStage(stage);
         Scene scene = new Scene(root);
-        
+        stage.setFullScreenExitHint("");
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle(APPTITLE);
