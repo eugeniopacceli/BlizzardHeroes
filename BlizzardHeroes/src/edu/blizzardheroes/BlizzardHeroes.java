@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class BlizzardHeroes extends Application {
-    public static final String APPTITLE = "Blizzard Heroes Top Trumps";
+    public static final String APPTITLE = "Blizzard Heroes - Super Trunfo";
     
     @Override
     public void start(Stage stage) throws Exception {
