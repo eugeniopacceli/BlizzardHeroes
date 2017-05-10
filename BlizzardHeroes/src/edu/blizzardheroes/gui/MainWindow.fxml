@@ -150,7 +150,7 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </GridPane.margin>
       </HBox>
-      <Label fx:id="subtitle" text="SUBTITLE" textFill="#0eff12" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+      <Label fx:id="subtitle" alignment="CENTER" text="SUBTITLE" textAlignment="CENTER" textFill="#0eff12" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <font>
             <Font size="25.0" />
          </font>

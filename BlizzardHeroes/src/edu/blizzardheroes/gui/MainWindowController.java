@@ -169,12 +169,13 @@ public class MainWindowController implements Initializable {
                 table.attributeSelected = p.getCurrentBestAttribute();
                 break;
         }
-        subtitle.setText(currentPlayer.getName() + " escolheu " + table.attributeSelected.name());
 
         for(int i = 0; i < playersNumber; i++){
             table.currentCards.put(players[i], players[i].getCards().get(0));
         }
         Pair<Player, Card> winner = table.playTurn();
+
+        subtitle.setText(currentPlayer.getName() + " escolheu " + table.attributeSelected.name()+", " + winner.getKey().getName() + " venceu a rodada.");
 
         if(winner.getKey() != players[0]){
             state = GameState.PLAYING;
