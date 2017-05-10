@@ -6,7 +6,7 @@ import edu.blizzardheroes.model.actors.HumanPlayer;
 import edu.blizzardheroes.model.actors.Player;
 import edu.blizzardheroes.model.cards.Card;
 import edu.blizzardheroes.model.cards.CardAttribute;
-import edu.blizzardheroes.model.cards.Deck;
+import edu.blizzardheroes.model.cards.DeckBuilder;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class MainWindowController implements Initializable {
     @FXML Button gameButton;
     
     Player[] players;
-    Deck deck;
+    DeckBuilder deck;
     GameTable table;
     Player currentPlayer;
 
@@ -79,8 +79,9 @@ public class MainWindowController implements Initializable {
         players[0] = new HumanPlayer("Humano");
         for(int i = 1; i < playersNumber; i++)
             players[i] = new ComputerPlayer("Computador " + i);
-        
-        deck = new Deck();
+
+        deck = new DeckBuilder();
+
         deck.buildDeck();
         ArrayList<Card>[] decks = deck.distributeCards(playersNumber);
         
@@ -117,7 +118,6 @@ public class MainWindowController implements Initializable {
         Image image = new Image("/edu/blizzardheroes/assets/heroes-logo-large.png");
         ImageView imgView = new ImageView();
         imgView.setImage(image);
-        
         dialog.setGraphic(imgView);
 
         Optional<String> result = dialog.showAndWait();
@@ -188,7 +188,7 @@ public class MainWindowController implements Initializable {
         for(int i = 0; i < playersNumber; i++){
             table.currentCards.put(players[i], players[i].getCards().get(0));
         }
-        Pair<Player, Card> winner = table.compareCards();
+        Pair<Player, Card> winner = table.playTurn();
 
         if(winner.getKey() != players[0]){
             state = GameState.PLAYING;
