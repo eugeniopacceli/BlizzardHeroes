@@ -183,6 +183,12 @@ public class MainWindowController implements Initializable {
                 gameButton.setText("Escolher");
                 state = GameState.MANUAL;
                 return;
+            case FINISHED:
+                gameButton.setDisable(true);
+                Player winner = table.getWinner(players);
+                subtitle.setTextFill(Color.web("#00FFFF"));
+                subtitle.setText("Fim da batalha! " + winner.getName() + " venceu!");
+                return;
         }
 
         for(int i = 0; i < playersNumber; i++){
@@ -213,6 +219,11 @@ public class MainWindowController implements Initializable {
             state = GameState.MANUALPAUSE;
             currentPlayer = players[0];
         }
+        
+        if(table.verifyWinner(players)){
+            state = GameState.FINISHED;
+        }
+        
         gameButton.setText("Entendido");
     }
     

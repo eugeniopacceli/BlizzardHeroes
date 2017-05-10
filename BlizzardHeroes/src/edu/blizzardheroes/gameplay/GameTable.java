@@ -66,4 +66,23 @@ public class GameTable {
         }               
         return bestCard;
     }            
+
+    public boolean verifyWinner(Player[] players) {
+        int actives = 0;
+        for(int i = 0; i < players.length; i++){
+            if(players[i].isActive()){
+                actives++;
+            }
+        }
+        return actives == 1;
+    }
+    
+    public Player getWinner(Player[] players){
+        for(int i = 0; i < players.length; i++){
+            if(players[i].isActive()){
+                return players[i];
+            }
+        }
+        return null;
+    }
 }

@@ -13,5 +13,6 @@ public enum GameState {
     PLAYING,
     MANUAL,
     PLAYINGPAUSE,
-    MANUALPAUSE
+    MANUALPAUSE,
+    FINISHED
 }
