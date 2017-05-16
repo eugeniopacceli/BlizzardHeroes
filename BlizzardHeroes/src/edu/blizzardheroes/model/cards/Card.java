@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.blizzardheroes.model.cards;
 
-/**
- *
- * @author Daniel
- */
+// The card that contains the info to play the game
 public class Card {
     private String heroName;
     

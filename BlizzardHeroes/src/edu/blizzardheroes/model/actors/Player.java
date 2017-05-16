@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.blizzardheroes.model.actors;
 
 import edu.blizzardheroes.model.cards.Card;
 import java.util.ArrayList;
 
-/**
- *
- * @author Daniel
- */
+// Superclass to abstract the base of a player
 public abstract class Player {
     private ArrayList<Card> cards;
     private String name;
