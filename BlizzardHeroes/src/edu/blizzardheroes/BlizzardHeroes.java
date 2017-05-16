@@ -13,7 +13,9 @@ public class BlizzardHeroes extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/edu/blizzardheroes/gui/MainWindow.fxml").openStream());
+        Parent root = loader.load(getClass()
+                .getResource("/edu/blizzardheroes/gui/MainWindow.fxml")
+                .openStream());
         MainWindowController controller = (MainWindowController)loader.getController();
         
         controller.setStage(stage);
