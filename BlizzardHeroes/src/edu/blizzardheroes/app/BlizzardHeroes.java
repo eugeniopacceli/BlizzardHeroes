@@ -1,4 +1,4 @@
-package edu.blizzardheroes;
+package edu.blizzardheroes.app;
 
 import edu.blizzardheroes.gui.MainWindowController;
 import javafx.application.Application;
