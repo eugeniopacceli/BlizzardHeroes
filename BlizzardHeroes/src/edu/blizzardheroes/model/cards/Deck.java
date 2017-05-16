@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.blizzardheroes.model.cards;
 
 import edu.blizzardheroes.model.actors.Player;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- *
- * @author Daniel
- */
 // Control the actions about the cards distribution
-public class DeckBuilder {       
+public class Deck {       
     private ArrayList<Card> deck;
     
-    public DeckBuilder(){
+    public Deck(){
         this.deck = new ArrayList<>();
     }
     
@@ -94,7 +85,7 @@ public class DeckBuilder {
         card = new Card("the-lost-vikings", 4, 4, 6, 6, CardCategory.D);
         deck.add(card);        
     }
-    // Distribui as cartas para os jogadores
+    // distribute the cards to the players
     public ArrayList<Card>[] distributeCards(int playersNumber){
         int playerIndex = 0;
         int remainingCards = 32;         
@@ -110,6 +101,7 @@ public class DeckBuilder {
         
         while(!this.deck.isEmpty())
         {
+            // generates random card
             randomCard = this.deck.get(random.nextInt(remainingCards));
             playersDecks[playerIndex].add(randomCard);
             this.deck.remove(randomCard);
@@ -123,6 +115,7 @@ public class DeckBuilder {
         return playersDecks;
     }              
     
+    // Generic Function for debug purpose
     public void showDecks(Player[] players){    
         for (Player player : players) {
             player.ShowDeck();

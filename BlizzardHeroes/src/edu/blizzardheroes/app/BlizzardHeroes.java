@@ -1,4 +1,4 @@
-package edu.blizzardheroes;
+package edu.blizzardheroes.app;
 
 import edu.blizzardheroes.gui.MainWindowController;
 import javafx.application.Application;
@@ -13,12 +13,16 @@ public class BlizzardHeroes extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass()
-                .getResource("/edu/blizzardheroes/gui/MainWindow.fxml")
-                .openStream());
-        MainWindowController controller = (MainWindowController)loader.getController();
         
-        controller.setStage(stage);
+        // Dependency Injection - get the view and bind to the parent
+        Parent root = loader.load(getClass()
+                     .getResource("/edu/blizzardheroes/gui/MainWindow.fxml")
+                     .openStream());
+        
+        MainWindowController controller = (MainWindowController)loader.getController();        
+        controller.setStage(stage);        
+        
+        // Main Scene for the game screen
         Scene scene = new Scene(root);
         stage.setFullScreenExitHint("");
         stage.setScene(scene);

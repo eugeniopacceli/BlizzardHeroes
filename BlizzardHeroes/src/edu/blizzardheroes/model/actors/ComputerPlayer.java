@@ -1,26 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.blizzardheroes.model.actors;
 
 import edu.blizzardheroes.model.cards.Card;
 import edu.blizzardheroes.model.cards.CardAttribute;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Daniel
- */
+// One type of the players: AI or Computer
 public class ComputerPlayer extends Player {
     public ComputerPlayer(String name){
         super(name);
     }
     
+    // Basic AI to computer defines the best attribute to start the turn
     public CardAttribute getCurrentBestAttribute(){
         HashMap<CardAttribute, Integer> attr = new HashMap<>();
         Card card = this.playCard();

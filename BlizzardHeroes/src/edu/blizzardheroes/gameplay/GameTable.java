@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.blizzardheroes.gameplay;
 
 import edu.blizzardheroes.model.actors.Player;
@@ -14,10 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.util.Pair;
 
-/**
- *
- * @author Daniel
- */
+
+// This class represents the place where the game occurs
 public class GameTable {
     public Map<Player, Card> currentCards;  
     public CardAttribute attributeSelected;
@@ -52,8 +45,8 @@ public class GameTable {
         // Add the cards to the winner
         bestCard.getKey().getCards().addAll(this.currentCards.values());
         
-        this.currentCards.clear();
-        
+        // Clear the 'table'
+        this.currentCards.clear();        
         return bestCard;
     }
     
@@ -84,6 +77,7 @@ public class GameTable {
         return bestCard;
     }            
 
+    // Tell if only one current player (winner)
     public boolean verifyWinner(Player[] players) {
         int actives = 0;
         for(int i = 0; i < players.length; i++){
@@ -94,6 +88,7 @@ public class GameTable {
         return actives == 1;
     }
     
+    // This method can be used to get the winner 
     public Player getWinner(Player[] players){
         for(int i = 0; i < players.length; i++){
             if(players[i].isActive()){

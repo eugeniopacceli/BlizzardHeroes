@@ -6,7 +6,7 @@ import edu.blizzardheroes.model.actors.HumanPlayer;
 import edu.blizzardheroes.model.actors.Player;
 import edu.blizzardheroes.model.cards.Card;
 import edu.blizzardheroes.model.cards.CardAttribute;
-import edu.blizzardheroes.model.cards.DeckBuilder;
+import edu.blizzardheroes.model.cards.Deck;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class MainWindowController implements Initializable {
     Player[] players = new Player[4];
     Label[] playersLabel = new Label[4];
     ImageView[] playersCardImage = new ImageView[4];
-    DeckBuilder deck;
+    Deck deck;
     GameTable table;
     Player currentPlayer;
 
@@ -88,7 +88,7 @@ public class MainWindowController implements Initializable {
         for(int i = 1; i < playersNumber; i++)
             players[i] = new ComputerPlayer("Computador " + i);
 
-        deck = new DeckBuilder();
+        deck = new Deck();
         deck.buildDeck();
         ArrayList<Card>[] decks = deck.distributeCards(playersNumber);
         
