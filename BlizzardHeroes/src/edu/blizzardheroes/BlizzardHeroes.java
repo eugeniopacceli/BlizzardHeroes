@@ -15,10 +15,12 @@ public class BlizzardHeroes extends Application {
         FXMLLoader loader = new FXMLLoader();
         
         // Dependency Injection - get the view and bind to the parent
-        Parent root = loader.load(getClass().getResource("/edu/blizzardheroes/gui/MainWindow.fxml").openStream());
-        MainWindowController controller = (MainWindowController)loader.getController();
+        Parent root = loader.load(getClass()
+                     .getResource("/edu/blizzardheroes/gui/MainWindow.fxml")
+                     .openStream());
         
-        controller.setStage(stage);
+        MainWindowController controller = (MainWindowController)loader.getController();        
+        controller.setStage(stage);        
         
         // Main Scene for the game screen
         Scene scene = new Scene(root);

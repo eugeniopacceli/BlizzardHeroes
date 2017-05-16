@@ -27,26 +27,26 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class MainWindowController implements Initializable {
-    Stage stage;
+    protected Stage stage;
     
-    @FXML GridPane backgroundGrid;
+    @FXML protected GridPane backgroundGrid;
     
-    @FXML TitledPane computer1Frame;
-    @FXML TitledPane computer2Frame;
-    @FXML TitledPane computer3Frame;
-    @FXML TitledPane humanFrame;
+    @FXML protected TitledPane computer1Frame;
+    @FXML protected TitledPane computer2Frame;
+    @FXML protected TitledPane computer3Frame;
+    @FXML protected TitledPane humanFrame;
     
-    @FXML Label computer1CardCount;
-    @FXML Label computer2CardCount;
-    @FXML Label computer3CardCount;
-    @FXML Label humanCardCount;
+    @FXML protected Label computer1CardCount;
+    @FXML protected Label computer2CardCount;
+    @FXML protected Label computer3CardCount;
+    @FXML protected Label humanCardCount;
     
-    @FXML ImageView computer1CardImage;
-    @FXML ImageView computer2CardImage;
-    @FXML ImageView computer3CardImage;
-    @FXML ImageView humanCardImage;
-    Image placeHolder;
-    Image gameLogo;
+    @FXML protected ImageView computer1CardImage;
+    @FXML protected ImageView computer2CardImage;
+    @FXML protected ImageView computer3CardImage;
+    @FXML protected ImageView humanCardImage;
+    protected Image placeHolder;
+    protected Image gameLogo;
 
     @FXML Label subtitle;
 
